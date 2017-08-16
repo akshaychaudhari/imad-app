@@ -1,6 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
-var path = require('path');
+var path = require('path'); 
 
 var app = express();
 app.use(morgan('combined'));
@@ -17,6 +17,17 @@ app.get('/ui/madi.png', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
 });
 
+app.get('/article-one', function (req, res) {
+    res.send("Article one req and served here");
+})
+
+app.get('/article-two', function (req, res) {
+    res.send("Article two req and served here");
+})
+
+app.get('/article-three', function (req, res) {
+    res.send("Article three req and served here");
+})
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
