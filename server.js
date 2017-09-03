@@ -6,8 +6,8 @@ var app = express();
 app.use(morgan('combined'));
 
 
-var ArticleOneContent = {
-  title: 'ARC Title'
+var articleOneContent = {
+  title: 'ARC Title',
   heading: 'ARC Heading',
   content: `Fairly Large
                  <p>
@@ -18,8 +18,45 @@ var ArticleOneContent = {
                 </p>
                 <p>
                      This is the content. This is the content.This is the content.This is the content.This is the content.This is the content.This is the content.This is the content.This is the content.This is the content.This is the content.
-                </p>` 
+                </p>` ,
+    date: 'Sep 5'
 };
+
+
+function createTemplate(data){
+    var title = data.title;
+    var heading = data.heading;
+    var content = data.content;
+    var htmlTemplate = {
+    <!doctype html>
+    <html>
+        <head>
+            <title>
+                ${title}
+            </title>
+            <meta name = "viewport" content = ""/>
+            <link href="/ui/style.css" rel="stylesheet" />
+        </head>
+    
+        <body>
+            <div class = "container">
+                <div>
+                    <a href="/"> Home</a>
+                </div>
+                <hr>
+                
+                <h3>${heading}</h3>
+                
+                <div> Date : Aug 16 </div>
+                <div>
+                    ${content}
+                </div>
+            </div>
+        </body>
+    </html>
+};    
+return htmlTemplate; 
+}
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
